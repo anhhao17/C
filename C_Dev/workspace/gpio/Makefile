@@ -1,4 +1,4 @@
-obj-m := main.o
+obj-m := driver.o
 ARCH=arm
 CROSS_COMPILE=arm-linux-gnueabihf-
 KERN_DIR = /home/awa/linux

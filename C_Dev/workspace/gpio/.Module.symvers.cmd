@@ -1,0 +1,1 @@
+cmd_/home/awa/C/C_Dev/workspace/gpio/Module.symvers := sed 's/ko$$/o/' /home/awa/C/C_Dev/workspace/gpio/modules.order | scripts/mod/modpost -m -a   -o /home/awa/C/C_Dev/workspace/gpio/Module.symvers -e -i Module.symvers   -T -

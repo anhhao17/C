@@ -1,0 +1,15 @@
+Sometimes, because of the speed and buffer capacity of the tty hardware, not all
+characters requested by the writing program can be sent at the moment the write
+function is called. The write function should return the number of characters that
+was able to be sent to the hardware (or queued to be sent at a later time), so that the
+user program can check if all of the data really was written. It is much easier for this
+check to be done in user space than it is for a kernel driver to sit and sleep until all of
+the requested data is able to be sent out. If any errors happen during the write call, a
+negative error value should be returned instead of the number of characters that were
+written.
+The write function can be called from both interrupt context and user context. This
+is important to know, as the tty driver should not call any functions that might sleep
+when it is in interrupt context. These include any function that might possibly call
+schedule, such as the common functions copy_from_user, kmalloc, and printk. If you
+really want to sleep, make sure to check first whether the driver is in interrupt con-
+text by calling in_interrupt.

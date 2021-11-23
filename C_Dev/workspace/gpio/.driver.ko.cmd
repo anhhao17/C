@@ -1,0 +1,1 @@
+cmd_/home/awa/C/C_Dev/workspace/gpio/driver.ko := arm-linux-gnueabihf-ld -r  -EL  --build-id=sha1  -T scripts/module.lds -o /home/awa/C/C_Dev/workspace/gpio/driver.ko /home/awa/C/C_Dev/workspace/gpio/driver.o /home/awa/C/C_Dev/workspace/gpio/driver.mod.o;  true

@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "init.h": "c",
+        "kernel.h": "c",
+        "module.h": "c",
+        "fs.h": "c",
+        "cdev.h": "c",
+        "printk.h": "c",
+        "bitops.h": "c",
+        "linkage.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

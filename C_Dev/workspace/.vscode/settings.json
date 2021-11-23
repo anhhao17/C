@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "init.h": "c",
+        "fs.h": "c",
+        "kdev_t.h": "c",
+        "uaccess.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

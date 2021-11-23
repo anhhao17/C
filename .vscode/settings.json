@@ -3,6 +3,7 @@
     "files.associations": {
         "module.h": "c",
         "init.h": "c",
-        "fs.h": "c"
+        "fs.h": "c",
+        "cstdlib": "c"
     }
 }

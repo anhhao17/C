@@ -1,0 +1,1 @@
+cmd_/home/awa/C/C_Dev/003pseudo_char_multi_driver/pcd_n.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T ./scripts/module-common.lds -o /home/awa/C/C_Dev/003pseudo_char_multi_driver/pcd_n.ko /home/awa/C/C_Dev/003pseudo_char_multi_driver/pcd_n.o /home/awa/C/C_Dev/003pseudo_char_multi_driver/pcd_n.mod.o;  true

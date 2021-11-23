@@ -1,0 +1,12 @@
+Cấu trúc bộ nhớ của tiến trình
+Bộ nhớ được cấp phát cho một tiến trình bao gồm nhiều thành phần được gọi là các segment. Cụ thể các segment như sau:
+
+Text segment: Chứa các chỉ lệnh ngôn ngữ máy (machine-language instruction) của chương trình mà tiến trình đó chạy. Text segment chính là các chỉ lệnh được biên dịch từ source code của lập trình viên cho chương trình đó. Nội dung của phân vùng này không thay đổi trong suốt quá trình process tồn tại nên được kernel thiết lập chế độ read-only để bảo vệ khỏi sự truy cập vô tình hay cố ý của người dùng. Như đã nói ở trên, vì nhiều tiến trình có thể chạy một chương trình nên text segment cũng được thiết lập sharable để các tiến trình có thể sử dụng chung để tiết kiệm tài nguyên.
+
+Initialized data segment: Vùng này chứa các biến toàn cục (global) và biến static mà đã được khởi tạo từ code của chương trình. Giá trị của các biến này được đọc từ các file thực thi khi chương trình được tải vào RAM. Ví dụ khi lập trình viên khai báo biến tĩnh “static var = 10;”, biến var này sẽ được lưu vào vùng nhớ của initialized data segent.
+
+Uninitialized data segment: Còn được gọi là vùng bss segment. Segment này chứa các biến toàn cục và static mà chưa được khởi tạo từ source code. Ví dụ khi lập trình viên khai báo biến tĩnh “static var;”, biến var sẽ được chứa ở vùng này và được khởi tạo giá trị 0. Nếu bạn thắc mắc tại sao biến var không được lưu vào vùng initialized data segment cho đơn giản. Câu trả lời là khi một chương trình được lưu trữ vào ổ cứng, không cần thiết phải cấp phát tài nguyên cho uninitialized data segment; thay vào đó chương trình chỉ cần nhớ vị trí và kích thước biến được yêu cầu cho vùng này, các biến này sẽ được cấp phát run time khi chương trình được tải vào RAM.
+
+Stack segment: Chứa stack frame của tiến trình. Chúng ta sẽ tìm hiểu sâu hơn về stack và stack frame ở phần dưới đây. Tạm thời hiểu là khi 1 hàm được gọi, một stack frame sẽ được cấp phát cho hàm đó (các biến được khai báo trong hàm, các đối số truyền vào hay giá trị return) và sẽ bị thu hồi khi hàm đó kết thúc. Vì vậy, stack segment có thể giãn ra hoặc co lại khi tiến trình cấp phát/thu hồi các stack frame.
+
+Heap segment: Là vùng bộ nhớ lưu các biến được cấp phát động (dynamic allocate) tại thời điểm run time. Tương tự như stack segment, heap segment cũng có thể giãn ra hoặc co vào khi một biến được cấp phát hoặc free.
