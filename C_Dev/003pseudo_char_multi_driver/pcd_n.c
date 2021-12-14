@@ -1,4 +1,4 @@
-#include <linux/module.h>
+
 #include <linux/init.h> 
 #include <linux/fs.h>
 #include <linux/cdev.h>
@@ -175,23 +175,29 @@ int  pcd_release (struct inode *inode, struct file *filp)
 	return 0;
 }
 
-int check_information(void){
+int check_permission(int dev_perm,int acc_mode){
 
 	return 0;
 }
 int  pcd_open (struct inode *inode, struct file *filp)
 {
-	struct pcdev_private_data *pcdev_data;
-	int minor_n;
-	minor_n=MINOR(inode->i_rdev);
-	pr_info("minor access = %d\n",minor_n);
+		int ret;
+		struct pcdev_private_data *pcdev_data;
+		int minor_n;
+		minor_n=MINOR(inode->i_rdev);
+		pr_info("minor access = %d\n",minor_n);
 
-	pcdev_data = container_of(inode->i_cdev,struct pcdev_private_data,cdev);
+		pcdev_data = container_of(inode->i_cdev,struct pcdev_private_data,cdev);
 	
 	/*to supply device private data to other methods of the driver*/
-	filp->private_data=pcdev_data;
-	pr_info("open successful\n");
-	return 0;
+		filp->private_data=pcdev_data;
+		
+
+		/*Check permission*/
+
+		ret=check_permission(pcdev_data->perm,filp->f_mode);
+		pr_info("open successful\n");
+		return 0;
 }
 /* file operations  of driver */
 struct file_operations  pcd_fops = 
